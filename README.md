@@ -4,7 +4,31 @@ Serves a file or directory as static assets on the web server
 
 ## Usage
 
+### Run
 
+1. `lein run`
+
+    This will run the server on a random free port and will serve files and folders from the directory this command is being run in.
+2. `lein run 3000`
+
+    Same as above, but will run the server on port `3000`
+3. `lein run 3000 doc`
+
+    Same as above, but the server will serve files inside the `doc` directory which should be present in the directory you are running this command from.
+
+*NOTE*: After the server has started, it will print out a statement saying on which port the server is running and which directory it is serving.
+
+### Test
+
+```
+lein test
+```
+
+### Build
+
+```
+lein with-profiles +uberjar uberjar
+```
 
 ## License
 
