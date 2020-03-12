@@ -3,7 +3,7 @@
 
 (defn dir-not-empty?
   [dir]
-  (> (count (.list dir)) 0))
+  (pos? (count (.list dir))))
 
 (defn sub-dir?
   [dir]
