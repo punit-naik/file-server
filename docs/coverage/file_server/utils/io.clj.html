@@ -1,0 +1,80 @@
+<html>
+ <head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="../../coverage.css"/>  <title> file_server/utils/io.clj </title>
+ </head>
+ <body>
+<span class="covered" title="1 out of 1 forms covered">
+                001&nbsp;&nbsp;(ns&nbsp;file-server.utils.io
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                002&nbsp;&nbsp;&nbsp;&nbsp;(:require&nbsp;[clojure.string&nbsp;:refer&nbsp;[join&nbsp;split]]))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                003&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                004&nbsp;&nbsp;(defn&nbsp;dir-not-empty?
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                005&nbsp;&nbsp;&nbsp;&nbsp;[dir]
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                006&nbsp;&nbsp;&nbsp;&nbsp;(pos?&nbsp;(count&nbsp;(.list&nbsp;dir))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                007&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                008&nbsp;&nbsp;(defn&nbsp;sub-dir?
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                009&nbsp;&nbsp;&nbsp;&nbsp;[dir]
+                </span><br/>
+<span class="covered" title="9 out of 9 forms covered">
+                010&nbsp;&nbsp;&nbsp;&nbsp;(&gt;&nbsp;(count&nbsp;(split&nbsp;dir&nbsp;#&quot;&#x2F;&quot;))&nbsp;1))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                011&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                012&nbsp;&nbsp;(defn&nbsp;get-dir-without-root
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                013&nbsp;&nbsp;&nbsp;&nbsp;&quot;Gets&nbsp;the&nbsp;dir&nbsp;path&nbsp;as&nbsp;a&nbsp;string&nbsp;without&nbsp;the&nbsp;root&nbsp;directory
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                014&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For&nbsp;e.g.&nbsp;If&nbsp;you&nbsp;provide&nbsp;`dir`&nbsp;as&nbsp;\&quot;a&#x2F;b&#x2F;c\&quot;,&nbsp;this&nbsp;function&nbsp;will&nbsp;output&nbsp;\&quot;b&#x2F;c\&quot;&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                015&nbsp;&nbsp;&nbsp;&nbsp;[dir]
+                </span><br/>
+<span class="covered" title="7 out of 7 forms covered">
+                016&nbsp;&nbsp;&nbsp;&nbsp;(-&gt;&gt;&nbsp;(split&nbsp;dir&nbsp;#&quot;\&#x2F;&quot;)
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                017&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rest
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                018&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(join&nbsp;&quot;&#x2F;&quot;)))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                019&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                020&nbsp;&nbsp;(defn&nbsp;get-free-port
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                021&nbsp;&nbsp;&nbsp;&nbsp;[]
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                022&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[socket&nbsp;(java.net.ServerSocket.&nbsp;0)]
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                023&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(.close&nbsp;socket)
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                024&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(.getLocalPort&nbsp;socket)))
+                </span><br/>
+ </body>
+</html>

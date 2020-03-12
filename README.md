@@ -8,6 +8,8 @@ Serves a file or directory as static assets on the web server
 
 ### Run
 
+You can run this project in multiple ways, see below:
+
 1. `lein run`
 
     This will run the server on a random free port and will serve files and folders from the directory this command is being run in.
@@ -31,6 +33,14 @@ lein test
 ```
 lein with-profiles +uberjar uberjar
 ```
+
+## Docs
+
+[`file-server` API Docs](https://punit-naik.github.io/file-server)
+
+### Code Coverage
+
+[`file-server` Code Coverage](https://punit-naik.github.io/file-server/coverage/)
 
 ## License
 

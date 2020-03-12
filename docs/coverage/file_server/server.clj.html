@@ -1,0 +1,95 @@
+<html>
+ <head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="../coverage.css"/>  <title> file_server/server.clj </title>
+ </head>
+ <body>
+<span class="covered" title="1 out of 1 forms covered">
+                001&nbsp;&nbsp;(ns&nbsp;file-server.server
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                002&nbsp;&nbsp;&nbsp;&nbsp;(:require&nbsp;[clojure.java.io&nbsp;:refer&nbsp;[file]]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                003&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[file-server.server.handler&nbsp;:refer&nbsp;[app]]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                004&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[file-server.utils.io&nbsp;:refer&nbsp;[get-free-port]]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                005&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ring.adapter.jetty&nbsp;:refer&nbsp;[run-jetty]])
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                006&nbsp;&nbsp;&nbsp;&nbsp;(:gen-class))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                007&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                008&nbsp;&nbsp;(defn&nbsp;start
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                009&nbsp;&nbsp;&nbsp;&nbsp;&quot;Takes&nbsp;first&nbsp;argument&nbsp;`port`&nbsp;to&nbsp;start&nbsp;the&nbsp;server&nbsp;on
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                010&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;And&nbsp;a&nbsp;second&nbsp;argument&nbsp;`serving-dir`&nbsp;which&nbsp;is&nbsp;the&nbsp;directory&nbsp;while&nbsp;will&nbsp;be&nbsp;served
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                011&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;`port`&nbsp;is&nbsp;not&nbsp;specified,&nbsp;it&nbsp;will&nbsp;start&nbsp;the&nbsp;server&nbsp;on&nbsp;a&nbsp;random&nbsp;free&nbsp;port&nbsp;using&nbsp;`file-server.utils.io&#x2F;get-free-port`
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                012&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;`serving-dir`&nbsp;is&nbsp;not&nbsp;specified,&nbsp;it&nbsp;will&nbsp;start&nbsp;serving&nbsp;the&nbsp;current&nbsp;directory
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                013&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOTE:&nbsp;Both&nbsp;the&nbsp;arguments&nbsp;are&nbsp;optional&quot;
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                014&nbsp;&nbsp;&nbsp;&nbsp;([]&nbsp;(start&nbsp;(get-free-port)))
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                015&nbsp;&nbsp;&nbsp;&nbsp;([port]&nbsp;(start&nbsp;port&nbsp;&quot;.&quot;))
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                016&nbsp;&nbsp;&nbsp;&nbsp;([port&nbsp;serving-dir]
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                017&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;(.exists&nbsp;(file&nbsp;serving-dir))
+                </span><br/>
+<span class="covered" title="6 out of 6 forms covered">
+                018&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(do&nbsp;(run-jetty&nbsp;(app&nbsp;serving-dir)
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                019&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{:join?&nbsp;false
+                </span><br/>
+<span class="partial" title="4 out of 6 forms covered">
+                020&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:port&nbsp;(cond-&gt;&nbsp;port
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                021&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(string?&nbsp;port)&nbsp;Integer&#x2F;parseInt)})
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                022&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(println&nbsp;&quot;Server&nbsp;started&nbsp;on&nbsp;port&quot;&nbsp;port
+                </span><br/>
+<span class="partial" title="5 out of 6 forms covered">
+                023&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;and&nbsp;serving&nbsp;files&nbsp;under&quot;&nbsp;(if&nbsp;(=&nbsp;serving-dir&nbsp;&quot;.&quot;)
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                024&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;current&nbsp;directory&quot;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                025&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;serving-dir)))
+                </span><br/>
+<span class="not-covered" title="0 out of 7 forms covered">
+                026&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(throw&nbsp;(Exception.&nbsp;(str&nbsp;&quot;`&quot;&nbsp;serving-dir&nbsp;&quot;`&nbsp;does&nbsp;not&nbsp;exist&quot;))))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                027&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                028&nbsp;&nbsp;(defn&nbsp;-main&nbsp;[&amp;&nbsp;args]
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                029&nbsp;&nbsp;&nbsp;&nbsp;(apply&nbsp;start&nbsp;args))
+                </span><br/>
+ </body>
+</html>
