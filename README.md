@@ -4,6 +4,8 @@ Serves a file or directory as static assets on the web server
 
 ## Usage
 
+**NOTE**: [Java](https://openjdk.java.net/) and [Leiningen](https://github.com/technomancy/leiningen) must be pre-installed!
+
 ### Run
 
 1. `lein run`
@@ -16,7 +18,7 @@ Serves a file or directory as static assets on the web server
 
     Same as above, but the server will serve files inside the `doc` directory which should be present in the directory you are running this command from.
 
-*NOTE*: After the server has started, it will print out a statement saying on which port the server is running and which directory it is serving.
+**NOTE**: After the server has started, it will print out a statement saying on which port the server is running and which directory it is serving.
 
 ### Test
 
