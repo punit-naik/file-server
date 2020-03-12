@@ -21,6 +21,7 @@
   (testing "The function `file-server.views/generate-views`"
     (is (= (views/generate-views "doc" false)
            [:ul '([:li [:a {:href "/intro.md"} "intro.md"]])]))
-    (is (= (views/generate-views "src/file_server/server" false)
-           [:ul '([:li [:a {:href "/file_server/server/routes.clj"} "routes.clj"]]
-                  [:li [:a {:href "/file_server/server/handler.clj"} "handler.clj"]])]))))
+    (is (= [:ul (sort-by #(-> % second last)
+                         (second (views/generate-views "src/file_server/server" false)))]
+           [:ul '([:li [:a {:href "/file_server/server/handler.clj"} "handler.clj"]]
+                  [:li [:a {:href "/file_server/server/routes.clj"} "routes.clj"]])]))))
