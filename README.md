@@ -1,5 +1,7 @@
 # file-server
 
+[![Clojars Project](https://img.shields.io/clojars/v/file-server.svg)](https://clojars.org/file-server)
+
 Serves a file or directory as static assets on the web server
 
 ## Usage
